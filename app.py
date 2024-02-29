@@ -5,27 +5,19 @@ import pandas as pd
 app = FastAPI()
 
 # Load the pickled pipeline
-with open('pipeline.pkl', 'rb') as file:
-    pipeline = pickle.load(file)
+## YOUR CODE HERE
+pipeline = None
 
-@app.get("/")
-def landing():
-    return {"Content": "Interview-Assignment-Test"} 
+"""
+Define the prediction endpoint
+1. Create a POST route named "predict" 
+2. Define a funtion inside the route to 
+    i receive the inference data
+    ii. predict on the received data
+    iii. return the predictions
+"""
 
-# Define the prediction endpoint
-@app.post("/predict/")
-def predict(data: dict):
-    try:
-        # Convert input data to DataFrame
-        df = pd.DataFrame([data])
-        
-        # Make prediction using the pipeline
-        prediction = pipeline.predict(df)
-        
-        # Return prediction
-        return {"prediction": prediction.tolist()}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+## YOUR CODE HERE
 
 
 # Inference Query

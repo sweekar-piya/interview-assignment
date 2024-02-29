@@ -13,32 +13,33 @@ class RandomForestPipeline:
 
     def fit_model(self, df):
         # Create feature matrix X and target vector y
-        X = df[self.features]
-        y = df[self.target]
+        ## YOUR CODE HERE
+        X = None
+        y= None
         
-        # Split the data into train and test sets
-        X_train, _, y_train, _ = train_test_split(X, y, test_size=0.2, random_state=42)
         
         # Define the pipeline
         self.pipeline = Pipeline([
-            ('scaler', StandardScaler()),  # Standard scaling
-            ('rf', RandomForestClassifier(random_state=42))  # Random Forest classifier
+            None, # Standard scaling
+            None  # Random Forest classifier
         ])
         
         # Fit the pipeline on the training data
-        self.pipeline.fit(X_train, y_train)
+        self.pipeline.fit(X, y)
         
         # Save the pipeline as a pickle file
         self.save_pipeline()
 
     def save_pipeline(self):
         # Save the pipeline as a pickle file
-        with open('pipeline.pkl', 'wb') as file:
-            pickle.dump(self.pipeline, file)
+        ## YOUR CODE HERE
+        pass
 
 # Load the DataFrame saved earlier
 df = pd.read_csv('wine_features.csv')
 
-# Usage example:
+# Instantiate RandomForestPipeline
 pipeline = RandomForestPipeline(features=['alcohol', 'flavanoids', 'total_phenols'], target='target')
+
+# Call fit model on df
 pipeline.fit_model(df)
