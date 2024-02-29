@@ -2,11 +2,12 @@ from fastapi import FastAPI, HTTPException
 import pickle
 import pandas as pd
 
+
 app = FastAPI()
 
 # Load the pickled pipeline
 ## YOUR CODE HERE
-pipeline = None
+pipeline = 
 
 """
 Define the prediction endpoint
@@ -18,6 +19,13 @@ Define the prediction endpoint
 """
 
 ## YOUR CODE HERE
+@app.post("/predict")
+def predict(data: dict):
+  data = data
+  df = pd.DataFrame(data)
+
+  return pipeline.predict(df)
+
 
 
 # Inference Query
@@ -32,3 +40,4 @@ curl -X 'POST' \
   "total_phenols": 2.5
 }'
 """
+

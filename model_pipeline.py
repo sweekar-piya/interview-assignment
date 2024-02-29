@@ -5,6 +5,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 import pandas as pd
 
+
 class RandomForestPipeline:
     def __init__(self, features, target):
         self.features = features
@@ -14,32 +15,36 @@ class RandomForestPipeline:
     def fit_model(self, df):
         # Create feature matrix X and target vector y
         ## YOUR CODE HERE
-        X = None
-        y= None
-        
-        
+        X = df[self.features]
+        y = df[self.target]
+
         # Define the pipeline
-        self.pipeline = Pipeline([
-            None, # Standard scaling
-            None  # Random Forest classifier
-        ])
-        
+        self.pipeline = Pipeline(
+            [
+                StandardScaler(),  # Standard scaling
+                RandomForestClassifier(),  # Random Forest classifier
+            ]
+        )
+
         # Fit the pipeline on the training data
         self.pipeline.fit(X, y)
-        
+
         # Save the pipeline as a pickle file
         self.save_pipeline()
 
     def save_pipeline(self):
         # Save the pipeline as a pickle file
         ## YOUR CODE HERE
-        pass
+        pickle.dump("model.pkl")
+
 
 # Load the DataFrame saved earlier
-df = pd.read_csv('wine_features.csv')
+df = pd.read_csv("wine_features.csv")
 
 # Instantiate RandomForestPipeline
-pipeline = RandomForestPipeline(features=['alcohol', 'flavanoids', 'total_phenols'], target='target')
+pipeline = RandomForestPipeline(
+    features=["alcohol", "flavanoids", "total_phenols"], target="target"
+)
 
 # Call fit model on df
 pipeline.fit_model(df)
